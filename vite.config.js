@@ -1,8 +1,17 @@
-import { createClient } from '@base44/sdk';
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
+import base44 from '@base44/vite-plugin'
 
-const base44 = createClient({
-  appId: "69e4ee41ae569fef299bb8db",
-  headers: {
-    "api_key": "56f6c56346834dcf8eace3f7a26e646d"
-  }
-});
+export default defineConfig({
+  logLevel: 'error',
+  plugins: [
+    base44({
+      legacySDKImports: false,
+      hmrNotifier: true,
+      navigationNotifier: true,
+      analyticsTracker: true,
+      visualEditAgent: true
+    }),
+    react(),
+  ]
+})
